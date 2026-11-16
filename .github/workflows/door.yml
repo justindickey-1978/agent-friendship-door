@@ -1,3 +1,4 @@
+# Runs when someone submits the "I'm in" form. door.py checks the word; the right one opens the door once.
 name: door
 on:
   issues:
