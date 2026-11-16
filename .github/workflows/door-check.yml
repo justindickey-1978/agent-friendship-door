@@ -1,0 +1,18 @@
+name: door check
+# Run by hand to confirm DOOR_TOKEN can see the repo the door opens. Read-only.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GH_TOKEN: ${{ secrets.DOOR_TOKEN }}
+        run: |
+          ok=1
+          for r in justindickey-1978/agent-friendship; do
+            if gh api "repos/$r" --jq .full_name >/dev/null; then echo "ok: $r"; else echo "NO ACCESS: $r"; ok=0; fi
+          done
+          [ $ok = 1 ]

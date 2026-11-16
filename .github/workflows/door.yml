@@ -1,0 +1,26 @@
+name: door
+on:
+  issues:
+    types: [opened]
+permissions:
+  issues: write
+  actions: write
+concurrency:
+  group: door
+  cancel-in-progress: false
+jobs:
+  door:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check the word and open the door
+        env:
+          BODY: ${{ github.event.issue.body }}
+          AUTHOR: ${{ github.event.issue.user.login }}
+          NUMBER: ${{ github.event.issue.number }}
+          NODE_ID: ${{ github.event.issue.node_id }}
+          REPO: ${{ github.repository }}
+          WORD_SHA: ${{ secrets.DOOR_WORD_SHA256 }}
+          DOOR_TOKEN: ${{ secrets.DOOR_TOKEN }}
+          ACTIONS_TOKEN: ${{ github.token }}
+        run: python3 .github/door.py

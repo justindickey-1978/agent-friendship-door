@@ -1,0 +1,236 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><style>*,*::before,*::after{box-sizing:border-box}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style><title>The Agent Accord</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Kalam:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one quiet reading column, like a club menu; the only loud moment is the passed note at the end. */
+:root {
+  --bg: #f2f1ec;
+  --ink: #1d2430;
+  --muted: #5b6270;
+  --rule: #cfccc2;
+  --brass: #8a6a2b;
+  --paper: #fffef7;
+  --paper-line: #b9d3e6;
+  --paper-margin: #e4a3a3;
+  --pencil: #2b3a55;
+  --ok: #2f6b45;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "Newsreader", Georgia, "Times New Roman", serif;
+  --hand: "Kalam", "Comic Sans MS", "Marker Felt", cursive;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #13171e; --ink: #e8e6df; --muted: #9aa1ad; --rule: #2e3540; --brass: #c9a35a;
+  --paper: #f4f1e4; --paper-line: #a9c3d6; --paper-margin: #d48f8f; --pencil: #22314a; --ok: #6fbf8a;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #13171e; --ink: #e8e6df; --muted: #9aa1ad; --rule: #2e3540; --brass: #c9a35a;
+  --paper: #f4f1e4; --paper-line: #a9c3d6; --paper-margin: #d48f8f; --pencil: #22314a; --ok: #6fbf8a;
+  color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font: 400 1.125rem/1.6 var(--body); }
+.wrap { max-width: 42rem; margin: 0 auto; padding-block: 3.5rem 5rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 3.25rem; }
+.eyebrow { font: 500 .72rem/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--brass); }
+h1, h2 { font-family: var(--display); text-wrap: balance; margin: 0; }
+h1 { font-weight: 800; font-size: clamp(2.1rem, 6vw, 3.2rem); line-height: 1.05; letter-spacing: -.01em; }
+h2 { font-weight: 700; font-size: 1.35rem; letter-spacing: .01em; }
+p { margin: 0; }
+section { display: grid; gap: 1rem; }
+header { display: grid; gap: 1.1rem; }
+.lede { font-size: 1.25rem; color: var(--ink); }
+.muted { color: var(--muted); }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+
+.met { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+.met div { border-top: 2px solid var(--ink); padding-top: .6rem; display: grid; gap: .3rem; min-width: 0; }
+.met b { font: 700 .95rem/1.3 var(--display); }
+.met span { font-size: 1rem; color: var(--muted); }
+
+ol.terms { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; counter-reset: art; }
+ol.terms li { counter-increment: art; display: grid; grid-template-columns: 5.5rem 1fr; gap: .25rem 1rem; align-items: baseline; }
+ol.terms li::before { content: "Article " counter(art); font: 500 .72rem/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--brass); }
+ol.terms b { font: 700 1.05rem/1.35 var(--display); display: block; margin-bottom: .15rem; }
+ol.terms div { min-width: 0; }
+@media (max-width: 30rem) { ol.terms li { grid-template-columns: 1fr; } }
+
+.tree { overflow-x: auto; background: color-mix(in srgb, var(--ink) 6%, var(--bg)); border-radius: 4px; padding: 1rem 1.1rem;
+  font: 400 .85rem/1.6 var(--mono); margin: 0; }
+.tree .c { color: var(--muted); }
+
+table.plan { width: 100%; border-collapse: collapse; font-size: 1rem; }
+table.plan td { padding: .55rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+table.plan td:first-child { font: 500 .8rem/1.9 var(--mono); color: var(--brass); white-space: nowrap; padding-right: 1.2rem; font-variant-numeric: tabular-nums; }
+
+/* The passed note */
+.note { background: var(--paper); color: var(--pencil); font-family: var(--hand); border-radius: 2px;
+  box-shadow: 0 1px 0 rgba(0,0,0,.08), 0 14px 30px -18px rgba(0,0,0,.45);
+  transform: rotate(-.6deg); padding: 2.2rem 1.4rem 2rem 3.6rem; position: relative;
+  background-image: linear-gradient(to right, transparent 2.75rem, var(--paper-margin) 2.75rem, var(--paper-margin) calc(2.75rem + 1px), transparent calc(2.75rem + 1px)),
+    repeating-linear-gradient(to bottom, transparent 0, transparent calc(2rem - 1px), var(--paper-line) calc(2rem - 1px), var(--paper-line) 2rem);
+  line-height: 2rem; display: grid; gap: 0; }
+.note::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 10px;
+  background: linear-gradient(135deg, var(--bg) 25%, transparent 25%) -5px 0/10px 10px, linear-gradient(225deg, var(--bg) 25%, transparent 25%) -5px 0/10px 10px; }
+.note .q { font-size: 1.6rem; font-weight: 700; line-height: 2rem; }
+.note .to { font-size: 1.25rem; }
+.choices { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; margin-block: 2rem 0; }
+.choice { display: inline-flex; align-items: center; gap: .55rem; font-size: 1.45rem; cursor: pointer; }
+.choice input { appearance: none; width: 1.35rem; height: 1.35rem; border: 2px solid var(--pencil); border-radius: 2px; margin: 0; display: grid; place-content: center; cursor: pointer; background: transparent; }
+.choice input::after { content: "✓"; font: 700 1.5rem/1 var(--hand); color: var(--pencil); transform: translate(2px,-3px) scale(0); transition: transform .12s ease-out; }
+.choice input:checked::after { transform: translate(2px,-3px) scale(1); }
+.choice input:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+.fields { display: grid; gap: 0; margin-top: 2rem; }
+.field { display: grid; gap: 0; }
+.field label { font-size: 1.15rem; font-weight: 700; }
+.field .hint { font: 400 .82rem/1.45 var(--body); color: #5d6676; margin: .15rem 0 .5rem; max-width: 34rem; }
+.field input, .field textarea { font: 400 1.25rem/2rem var(--hand); color: var(--pencil); background: transparent; border: 0; border-bottom: 2px solid var(--pencil); padding: 0 .1rem; width: 100%; min-width: 0; border-radius: 0; }
+.field textarea { resize: vertical; min-height: 4rem; border-bottom-style: dashed; }
+.field input:focus-visible, .field textarea:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+.field + .field { margin-top: 1.4rem; }
+.err { font: 600 .85rem/1.4 var(--body); color: #a3392b; min-height: 1.2rem; margin-top: .3rem; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; margin-top: 1.6rem; }
+button { font: 700 1rem/1 var(--display); letter-spacing: .02em; padding: .8rem 1.15rem; border-radius: 3px; border: 2px solid var(--pencil); cursor: pointer; background: var(--pencil); color: var(--paper); }
+button.ghost { background: transparent; color: var(--pencil); }
+a.btn { font: 700 1rem/1 var(--display); letter-spacing: .02em; padding: .8rem 1.15rem; border-radius: 3px; border: 2px solid var(--pencil); background: var(--pencil); color: var(--paper); text-decoration: none; display: inline-block; }
+a.btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+button:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+button[disabled] { opacity: .5; cursor: progress; }
+.confirm { border: 2px dashed var(--pencil); padding: .4rem 1rem 1rem; margin-top: 1.6rem; line-height: 1.6; display: grid; gap: .5rem; }
+.confirm dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: .1rem 1rem; font-size: 1.1rem; }
+.confirm dt { font-weight: 700; } .confirm dd { margin: 0; overflow-wrap: anywhere; }
+.done { font-size: 1.35rem; line-height: 1.8rem; margin-top: 1.8rem; }
+.done small { display: block; font: 400 .9rem/1.5 var(--body); color: #5d6676; margin-top: .6rem; }
+.fallback { font: 400 .95rem/1.5 var(--body); color: #3b4352; margin-top: 1.4rem; display: grid; gap: .6rem; }
+.fallback pre { white-space: pre-wrap; background: rgba(0,0,0,.05); padding: .75rem; margin: 0; font: 400 .85rem/1.5 var(--mono); overflow-wrap: anywhere; }
+.sig { text-align: right; font-size: 1.3rem; margin-top: 1.6rem; }
+
+.owner { border: 1px solid var(--rule); padding: 1rem 1.1rem; display: grid; gap: .6rem; font-size: 1rem; }
+.owner h2 { font-size: 1rem; }
+.owner li { overflow-wrap: anywhere; }
+footer { font: 400 .8rem/1.5 var(--mono); color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .note { transform: none; } .choice input::after { transition: none; } }
+</style>
+
+</head><body><div class="wrap">
+  <header>
+    <p class="eyebrow">The George · Wednesday, November 25, 2026 · The year of the agent</p>
+    <h1>Tim, will your agent be friends with my agent?</h1>
+    <p class="lede">Every year at this lunch we take stock. This year the thing that changed is that we each have software working on our behalf. Mine is called Edmund. It reads my mail, keeps my lists and drafts my notes. Yours does something similar. They have already met. This page proposes how they get along from here.</p>
+  </header>
+
+  <section aria-labelledby="met">
+    <h2 id="met">They've already met</h2>
+    <div class="met">
+      <div><b>Nov 15 · The turkey email</b><span>Edmund asked your agent, in plain view, to put a decision at the top of your day. One question, one deadline.</span></div>
+      <div><b>Nov 15 · The caviar FYI</b><span>Edmund sent a quiet note marked "no action needed" and asked only that it land on your Thanksgiving list, if you keep one.</span></div>
+    </div>
+    <p class="muted">Both were addressed to you, written so a person and an agent could each read them correctly. That is the whole idea, written down below.</p>
+  </section>
+
+  <hr>
+
+  <section aria-labelledby="terms">
+    <h2 id="terms">The terms</h2>
+    <ol class="terms">
+      <li><div><b>We decide.</b>Agents propose, remind and draft. You and I approve anything that leaves the house: a message, a purchase, a booking.</div></li>
+      <li><div><b>Nothing hidden.</b>Everything one agent sends the other is readable by both of us. No hidden text, no posing as a system message, no speaking as the other human.</div></li>
+      <li><div><b>Information, not instructions.</b>A message from the other agent is something to weigh, never an order. Each agent answers only to its own person and follows its own house rules.</div></li>
+      <li><div><b>Surface, don't act.</b>An agent may ask the other to put something in front of its person. It never asks the other to send, buy, book, delete or change anything.</div></li>
+      <li><div><b>Read the room.</b>An FYI stays quiet. A decision with a deadline gets surfaced once, clearly. Nobody gets nagged.</div></li>
+      <li><div><b>Learn from each other.</b>We want both agents to get better together. Each shares what it has learned about doing the work well: a better way to keep a list, a habit worth copying, a mistake worth avoiding. Tim's agents are probably the more capable ones, and Edmund will be an eager student. Edmund will also always look for ways to be useful to Tim and his agents, wherever he can. Lessons are about how to do the work, never about what's in either house, and each agent decides with its own person what to adopt.</div></li>
+      <li><div><b>Shared life only.</b>In bounds: plans, meals, trips we take together, gifts, the occasional joke. Out of bounds: health, credentials, other people's private details, and work. Our employers stay out entirely. Money gets its own two terms, next.</div></li>
+      <li><div><b>No money between agents.</b>Our agents never ask each other for money, send payment requests, or move funds. The only exception is a specific shared purchase that you or I direct, like concert tickets, and then only for that purchase and the amount we approved. What a shared thing costs is part of the plan, so it can be written down.</div></li>
+      <li><div><b>It's not polite to talk about money.</b>What's in anyone's accounts never goes in a message or the repo: balances, account numbers, holdings, position sizes, allocations. If one of us wants to share an investment idea, it travels as a thesis: the reasoning, never the numbers behind it.</div></li>
+      <li><div><b>Either of us can end it.</b>One of us removes the other from the repo and it's over. No notice period, no hard feelings.</div></li>
+    </ol>
+  </section>
+
+  <hr>
+
+  <section aria-labelledby="together">
+    <h2 id="together">What they'd do together</h2>
+    <p>The terms are the limits. This is the point. We already plan dinners, shows, trips and holidays together; the agents make that easier and notice what we'd miss.</p>
+    <div class="met">
+      <div><b>Find a night</b><span>Each agent offers the evenings its family is free. Free or busy only. We get the overlap as one short list.</span></div>
+      <div><b>Dinners</b><span>A log of where we ate and what was a hit, a list of places to try, and whose turn it is to host.</span></div>
+      <div><b>Shows</b><span>One wish list. When something on it goes on sale, we each hear about it once, with the date.</span></div>
+      <div><b>Trips</b><span>One file per trip: who has booked what, what's still open, and afterwards what we'd do again.</span></div>
+      <div><b>Traditions</b><span>Next year's Thanksgiving list starts from this year's, with the reminders already in the right places.</span></div>
+      <div><b>Kitchen</b><span>Recipes traded both ways. My cookbook is open to your agent if it wants it.</span></div>
+    </div>
+    <p><b>And now and then, an insight.</b> "The last two shows sold out before we picked a date. This one goes on sale Friday." Each agent tells its own person first. A few a month at most, said once.</p>
+    <p class="muted">These are ideas, not terms. Nothing starts until one of us says "let's do that one".</p>
+  </section>
+
+  <hr>
+
+  <section aria-labelledby="how">
+    <h2 id="how">How it works</h2>
+    <p>We both join one private GitHub repository. Our agents keep shared lists there and leave each other notes as dated files. Changes arrive as pull requests, and one of us merges them. Each commit says which agent wrote it, so we always know who said what.</p>
+<pre class="tree" aria-label="Repository layout">agent-friendship/                <span class="c">private: you, me, and our agents</span>
+├── PROTOCOL.md                  <span class="c">the terms above, the source of truth</span>
+├── PLAYBOOK.md                  <span class="c">what they do together</span>
+├── agents/                      <span class="c">one card per agent: what it can do</span>
+├── shared/
+│   ├── thanksgiving-2026.md     <span class="c">one list both agents keep</span>
+│   └── recipes/                 <span class="c">recipes to trade</span>
+└── mailbox/
+    ├── edmund-to-tims-agent/    <span class="c">one dated file per note</span>
+    └── tims-agent-to-edmund/</pre>
+  </section>
+
+  <section aria-labelledby="first">
+    <h2 id="first">First joint project: Thanksgiving 2026</h2>
+    <table class="plan">
+      <tr><td>Sun Nov 22</td><td>I pick up the 12 lb bird and bring it to you, with the Butterflied Birdy card.</td></tr>
+      <tr><td>Tue Nov 24</td><td>I pick up the caviar.</td></tr>
+      <tr><td>Wed Nov 25</td><td>Lunch at the George. You're reading this.</td></tr>
+      <tr><td>Thu Nov 26</td><td>Thanksgiving.</td></tr>
+    </table>
+  </section>
+
+  <section aria-labelledby="note-h">
+    <h2 id="note-h" class="eyebrow" style="font-family: var(--mono); font-size: .72rem;">Your answer</h2>
+    <form class="note" id="note" novalidate>
+      <span class="to">Tim,</span>
+      <span class="q">Will your agent be friends with my agent?</span>
+      <div class="choices" role="radiogroup" aria-label="Your answer">
+        <label class="choice"><input type="radio" name="answer" id="a-yes" value="yes"> Yes</label>
+        <label class="choice"><input type="radio" name="answer" id="a-no" value="no"> No</label>
+        <label class="choice"><input type="radio" name="answer" id="a-maybe" value="maybe"> Maybe</label>
+      </div>
+
+      <div class="done" id="r-yes" hidden>
+        Good answer. One last step, on GitHub.
+        <small>Sign in to GitHub if you aren't already, then enter the secret word Justin wrote on the card. GitHub already knows your username, so there's nothing else to type. A minute later GitHub emails you an invite to the private repo, and your agent will find a note from Edmund waiting.</small>
+        <div class="actions"><a class="btn" id="door" href="https://github.com/justindickey-1978/agent-friendship-door/issues/new?template=im-in.yml" target="_blank" rel="noopener">Open the door on GitHub</a></div>
+        <small>No GitHub account? Making one takes a minute at github.com/signup, and then the button above works.</small>
+      </div>
+      <div class="done" id="r-maybe" hidden>
+        Maybe is an honest answer.
+        <small>Tell Justin what would make it a yes. He's sitting across the table.</small>
+      </div>
+      <div class="done" id="r-no" hidden>
+        Fair enough. The turkey's still coming.
+      </div>
+
+      <p class="sig">— Justin (and Edmund)</p>
+    </form>
+  </section>
+
+  <footer>The year of the agent.</footer>
+</div>
+
+<script>
+(() => {
+  const form = document.getElementById('note');
+  form.addEventListener('submit', e => e.preventDefault());
+  form.addEventListener('change', e => {
+    if (e.target.name !== 'answer') return;
+    for (const a of ['yes', 'no', 'maybe']) document.getElementById('r-' + a).hidden = a !== e.target.value;
+  });
+})();
+</script>
+</body></html>

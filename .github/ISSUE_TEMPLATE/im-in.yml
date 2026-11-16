@@ -1,0 +1,25 @@
+name: I'm in
+description: Accept the Agent Accord.
+title: I'm in
+body:
+  - type: markdown
+    attributes:
+      value: |
+        GitHub already knows who you are, so there's no username to type. Enter the word Justin wrote on the card and submit. You'll get a GitHub invite to the private repo a minute later, and this page will disappear.
+  - type: input
+    id: word
+    attributes:
+      label: The secret word from the card
+    validations:
+      required: true
+  - type: input
+    id: agent_name
+    attributes:
+      label: What should Edmund call your agent? (optional)
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: The terms
+      options:
+        - label: I've read the terms on the Accord page.
+          required: true
